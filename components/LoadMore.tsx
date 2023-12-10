@@ -3,13 +3,13 @@ import { fetchAnime } from "@/app/action";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer"
-import Card, { AnimeProp } from "./Card";
 
 let page = 2;
+export type AnimeCardProp = JSX.Element;
 
 function LoadMore() {
   const { ref, inView } = useInView()
-  const [data, setData] = useState<AnimeProp[]>([])
+  const [data, setData] = useState<AnimeCardProp[]>([])
 
   useEffect(() => {
 
@@ -26,9 +26,7 @@ function LoadMore() {
   return (
     <>
       <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
-        {data.map((item: AnimeProp, index: number) => (
-          <Card key={item.id} anime={item} index={index} />
-        ))}
+        {data}
       </section>
 
       <section className="flex justify-center items-center w-full">
